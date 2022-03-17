@@ -1,3 +1,5 @@
 <?php
-echo 13213213213;
+session_start();
+$mehenname = $_COOKIE['username'].$_COOKIE['isset'].$_COOKIE['userrating'];
+include_once "html/index.html";
 ?>
