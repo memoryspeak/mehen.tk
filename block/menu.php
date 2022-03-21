@@ -13,20 +13,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/mehenProject/mehenProject.php">
+            <a class="nav-link" href="/settings/settings.php">
               Settings
             </a>
           </li>
-          <!--<li class="nav-item">
-            <a class="nav-link" href="/mehenProject/mehenProject.php">
-              <span>&#128101;</span>456
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/mehenProject/mehenProject.php">
-              <span>&#127922;</span>123
-            </a>
-          </li>-->
         </ul>
 
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -35,7 +25,7 @@
         <ul class="nav flex-column mb-2">
           <li class="nav-item">
             <a class="nav-link" href="#" onclick="startGame('oppositeEachOver')">
-              <span>&#128490;</span>
+              <span>&#9876;</span>
               Opposite Each Over
             </a>
           </li>
@@ -47,7 +37,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <span>&#128423;</span>
+              <span>&#127757;</span>
               Online Game
             </a>
           </li>
