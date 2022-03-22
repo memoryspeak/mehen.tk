@@ -1,5 +1,5 @@
 var white_goose = new Image();
-white_goose.src = "paint/white_goose_mini.png";
+white_goose.src = "/paint/white_goose_mini.png";
 
 const out_board_color         = "#FFFFFF";
 const light_color             = "#FFDEAD";

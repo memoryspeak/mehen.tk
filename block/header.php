@@ -1,5 +1,21 @@
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">Mehen&#128013;<?php echo $mehenname; ?></a>
+
+  <div class="dropdown">
+    <a style="background: transparent;" class="navbar-brand nav-link me-0 px-3" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Mehen&#128013;<?php echo $mehenname; ?>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+      <li><a class="dropdown-item" href="#">Account</a></li>
+      <li><a class="dropdown-item" href="#">Language</a></li>
+      <li><a class="dropdown-item" href="#">Sound</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="/sign/sign.php">
+            <?php
+              if ($_COOKIE['uid'] == '') { echo 'Sign In'; } else { echo 'Sign Out'; };
+            ?>
+          </a></li>
+    </ul>
+  </div>
 
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
