@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  
+<?php require "../block/head.php" ?>
+
+<body>
+<?php require "../block/header.php" ?>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <!--Menu-->
+    <?php require "../block/menu.php" ?>
+    
+    <!-- Main Board -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <style>
+    #inputUsername:invalid {
+      color: red;
+    }
+    #inputUsername:valid {
+      color: green;
+    }
+    #inputPassword:invalid {
+      color: red;
+    }
+    #inputPassword:valid {
+      color: green;
+    }
+    #inputEmail:invalid {
+      color: red;
+    }
+    </style>
+      <!--Registration form-->      
+      <div class="container mt-3">
+        <center>
+          <a class="nav-link me-0 px-3"><span style="color: black"><b>Registration</b></span></a>
+        </center>
+      </div>
+      <div class="container mt-3">
+        <form action="registration.php" method="post">
+          <div class="mb-3">
+            <label for="inputUsername" class="form-label">Username</label>
+            <input type="text" class="form-control" id="inputUsername" name="inputUsername" pattern="(?!^<?php if ($showUsernameHelp == 'true') {echo $inputUsername;};?>$)[0-9a-zA-Z]{6,20}" value="<?php if ($inputUsername) {echo $inputUsername;};?>" required>
+            <div id="usernameHelp" class="form-text" style="color: grey;">The username must be unique. The username must be between 6 and 20 characters long and only contain the numbers [0-9] and the letters [a-z] in lowercase or [A-Z] in uppercase.</div>
+          </div>
+          <div class="mb-3">
+            <label for="inputPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="inputPassword" name="inputPassword" pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{15}" required>
+            <div id="passwordHelp" class="form-text" style="color: grey;">The password must be 15 characters, get one of the numbers [0-9], one of the letters [a-z] in lower case and one of the letters [A-Z] in upper case.</div>
+          </div>
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Email</label>
+            <input type="text" class="form-control" id="inputEmail" name="inputEmail" pattern="(?!^<?php if ($showEmailHelp == 'true') {echo $inputEmail;};?>$)(^.{1,}@.{1,}$)" value="<?php if ($inputEmail) {echo $inputEmail;};?>" required>
+            <div id="emailHelp" class="form-text" style="color: grey;">It is not possible to create multiple accounts linked to the same username or email address. If you lose your password, we can recover it using the email address you provided during registration. By registering, you agree to be bound by our <a href="#" style="text-decoration: none;">User Agreement</a>. Check out our <a href="#" style="text-decoration: none;">Privacy Policy</a>.</div>
+         </div>
+          <!--<p class="lead"><small>
+            It is not possible to create multiple accounts linked to the same username or email address. If you lose your password, we can recover it using the email address you provided during registration. By registering, you agree to be bound by our <a href="#" style="text-decoration: none;">User Agreement</a>. Check out our <a href="#" style="text-decoration: none;">Privacy Policy</a>.
+          </small></p>-->
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+
+        <!--Footer-->
+	<div class="container">
+	  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+	    <p class="col-md-4 mb-0 text-muted">MehenProject @ 2021 - 2022</p>
+	    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+	      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+	    </a>
+
+	    <ul class="nav col-md-4 justify-content-end">
+	      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+	      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+	      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+	      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+	      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+	    </ul>
+	  </footer>
+	</div>
+
+    </main>
+  </div>
+</div>
+
+<script src="https://getbootstrap.com/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<script src="registration.js"></script>
+
+</body>
+
+</html>
