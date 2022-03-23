@@ -1,5 +1,5 @@
 <?php
 session_start();
-$mehenname = $_COOKIE['username'].$_COOKIE['isset'].$_COOKIE['userrating'];
+$mehenname = $_COOKIE['uid'];
 include_once "html/index.html";
 ?>

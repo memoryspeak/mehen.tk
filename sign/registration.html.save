@@ -41,7 +41,7 @@
         <form action="registration.php" method="post">
           <div class="mb-3">
             <label for="inputUsername" class="form-label">Username</label>
-            <input type="text" class="form-control" id="inputUsername" name="inputUsername" pattern="(?!^<?php if ($showUsernameHelp == 'true') {echo $inputUsername;};?>$)[0-9a-zA-Z]{6,20}" value="<?php if ($inputUsername) {echo $inputUsername;};?>" required>
+            <input type="text" class="form-control" id="inputUsername" name="inputUsername" pattern="(?!^<?php if ($showUsernameHelp) {echo $inputUsername;};?>$)[0-9a-zA-Z]{6,20}" value="<?php if ($inputUsername) {echo $inputUsername;};?>" required>
             <div id="usernameHelp" class="form-text" style="color: grey;">The username must be unique. The username must be between 6 and 20 characters long and only contain the numbers [0-9] and the letters [a-z] in lowercase or [A-Z] in uppercase.</div>
           </div>
           <div class="mb-3">
@@ -51,7 +51,7 @@
           </div>
           <div class="mb-3">
             <label for="inputEmail" class="form-label">Email</label>
-            <input type="text" class="form-control" id="inputEmail" name="inputEmail" pattern="(?!^<?php if ($showEmailHelp == 'true') {echo $inputEmail;};?>$)(^.{1,}@.{1,}$)" value="<?php if ($inputEmail) {echo $inputEmail;};?>" required>
+            <input type="text" class="form-control" id="inputEmail" name="inputEmail" pattern="^.*@.{1,}$" value="<?php if ($inputEmail) {echo $inputEmail;};?>" required>
             <div id="emailHelp" class="form-text" style="color: grey;">It is not possible to create multiple accounts linked to the same username or email address. If you lose your password, we can recover it using the email address you provided during registration. By registering, you agree to be bound by our <a href="#" style="text-decoration: none;">User Agreement</a>. Check out our <a href="#" style="text-decoration: none;">Privacy Policy</a>.</div>
          </div>
           <!--<p class="lead"><small>
