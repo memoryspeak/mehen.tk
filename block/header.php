@@ -2,7 +2,7 @@
 
   <div class="dropdown">
     <a style="background: transparent;" class="navbar-brand nav-link me-0 px-3" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Mehen&#128013;<?php echo $mehenname; ?>
+      Mehen&#128013;<?php if ($_COOKIE['uid']) { echo unserialize($_COOKIE['uid'])['username'].'@'.unserialize($_COOKIE['uid'])['rating']; }; ?>
     </a>
     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
       <li><a class="dropdown-item" href="#">Account</a></li>
