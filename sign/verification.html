@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  
+<?php require "../block/head.php" ?>
+
+<body>
+<?php require "../block/header.php" ?>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <!--Menu-->
+    <?php require "../block/menu.php" ?>
+    
+    <!-- Main Board -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+        <!--Verification form-->      
+      <div class="container mt-3">
+        <center>
+          <a class="nav-link me-0 px-3"><span style="color: black"><b>Verification</b></span></a>
+        </center>
+      </div>
+      <div class="container mt-3">
+        <form action="verification_send_code.php" method="post">
+          <div class="mb-3">
+            <label for="inputUsername" class="form-label">Username</label>
+            <input type="text" class="form-control" id="inputUsername" name="inputUsername" value="<?php echo $username?>" required>
+          </div>
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Email</label>
+            <input type="text" class="form-control" id="inputEmail" name="inputEmail" value="<?php echo $email?>" required>
+          </div>
+          <div class="mb-3">
+            <label for="inputVerificationCode" class="form-label">Verification code</label>
+            <input type="text" class="form-control" id="inputVerificationCode" name="inputVerificationCode" required>
+            <div id="verificationCodeHelp" class="form-text">A verification code has been sent to the email address you provided. Enter it to verify your account. You can verify later, however, some features on the site may not work correctly.</div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-auto me-auto">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-dark" onclick="location.href='/'">Later</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+        <!--Footer-->
+	<div class="container">
+	  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+	    <p class="col-md-4 mb-0 text-muted">MehenProject @ 2021 - 2022</p>
+
+	    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+	      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+	    </a>
+
+	    <ul class="nav col-md-4 justify-content-end">
+	      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+	      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+	      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+	      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+	      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+	    </ul>
+	  </footer>
+	</div>
+
+    </main>
+  </div>
+</div>
+
+<script src="https://getbootstrap.com/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="verification.js"></script>
+
+</body>
+
+</html>
