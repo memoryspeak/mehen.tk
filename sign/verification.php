@@ -8,7 +8,7 @@ require 'PHPMailer/src/SMTP.php';
 
 session_start();
 
-if ($_COOKIE['uid']) {
+if (unserialize($_COOKIE['uid'])['verification'] == 0) {
     $email = unserialize($_COOKIE['uid'])['email'];
     $username = unserialize($_COOKIE['uid'])['username'];
     $verification_code = unserialize($_COOKIE['uid'])['verification_code'];
@@ -34,12 +34,10 @@ if ($_COOKIE['uid']) {
     $mail->From = $mail_username;
     $mail->addAddress($email);
 
-
     // content
     $mail->isHTML(true);
     $mail->Subject = 'Mehen verification code';
     $mail->Body    = 'Dear '.$username.', your verification code for MehenProject: '.$verification_code;
-
 
     try {
         $mail->send();

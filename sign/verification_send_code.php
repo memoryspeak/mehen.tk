@@ -1,65 +1,41 @@
 <?php
+
 session_start();
 
 require_once "../php/db_connect.php";
-//require_once "../php/get_users.php";
 
 $inputVerificationCode = $_POST["inputVerificationCode"];
 $inputUsername = $_POST["inputUsername"];
 $inputEmail = $_POST["inputEmail"];
 
+$token = unserialize($_COOKIE['uid'])['token'];
+$rating = unserialize($_COOKIE['uid'])['rating'];
+$date_created = unserialize($_COOKIE['uid'])['date_created'];
 
-print_r($inputVerificationCode);
-print_r($inputUsername);
-print_r($inputEmail);
-/*try {
-    $upload_user = $db_connect->prepare("SELECT `verification_code` INTO `users` WHERE (`username`, `email`, `password`, `token`, `rating`, `date_created`, `verification`, `online`, `latest_date_online`) VALUES (:username, :email, :password, :token, :rating, :date_created, :verification, :online, :latest_date_online)");
-    $upload_user->execute($upload_user_array);
-} catch (PDOException $exception) {
 
-};*/
-
-//print_r($inputVerificationCode);
-//$inputPassword = md5($_POST["inputPassword"]);
-//$inputEmail = $_POST["inputEmail"];
-
-/*if ($inputUsername && $inputPassword && $inputEmail) {
+if ($inputVerificationCode && $inputUsername && $inputEmail) {
     try {
-        $time = time();
-        $microtime = microtime();
-        $date = date('Y-m-d H:i:s', $time);
-        $token = md5($time.$username_reg.$email.$microtime);
-        $upload_user_array = array('username' => $inputUsername, 'email' => $inputEmail, 'password' => $inputPassword, 'token' => $token, 'rating' => 1500, 'date_created' => $date, 'verification' => 0, 'online' => 1, 'latest_date_online' => $date);
-        $upload_user = $db_connect->prepare("INSERT INTO `users` (`username`, `email`, `password`, `token`, `rating`, `date_created`, `verification`, `online`, `latest_date_online`) VALUES (:username, :email, :password, :token, :rating, :date_created, :verification, :online, :latest_date_online)");
+        $upload_user_array = array('username' => $inputUsername);
+        $upload_user = $db_connect->prepare("SELECT * FROM `users` WHERE `username` = :username");
         $upload_user->execute($upload_user_array);
-        //$vercode = "1234";
-        //$to = $email;
-        //$subject = "Mehen verification code";
-        //$message = 'To confirm your account, enter this code - '.$vercode.' - in the form on the site and click the CONFIRM button.';
-        //$headers = array('From' => 'mail@mehen.tk');
-        //mail($to, $subject, $message, $headers);
-        //$_SESSION['register_answer'] = 'The user `'.$username_reg.'` has been successfully added to the database. Account creation time - '.$date.'. Your ELO rating in the game - 1500. To verify your account, a verification code has been sent to your email address `'.$email.'`. Enter the received code in the form below and click the CONFIRM button. You can verify your account later. To do this, click &#127968; button.';
-        setcookie("uid", serialize($upload_user_array), time()+3600, "/");
-        //setcookie("isset", "@", time()+3600, "/");
-        //setcookie("userrating", "1500", time()+3600, "/");
-        header('Location: verification.php');
-    } catch(PDOException $exception) {
-        $inWhatColIsError = explode("'", explode(": ", $exception -> getMessage())[2])[3];
-        if ($inWhatColIsError == "username") {
-            $showUsernameHelp = 'true';
-            $showEmailHelp = 'false';
-            include_once "registration.html";
-        } elseif ($inWhatColIsError == "email") {
-            $showUsernameHelp = 'false';
-            $showEmailHelp = 'true';
-            include_once "registration.html";
+        $verification_result = $upload_user->fetchAll();
+
+        if ($verification_result[0]['verification_code'] == $inputVerificationCode) {
+            $update_user = $db_connect->prepare("UPDATE `users` SET `verification` = :verification WHERE `username` = :username");
+            $update_user->execute(array('verification' => '1', 'username' => $inputUsername));
+            if ($token != "" && $rating != "" && $date_created != "") {
+                $setcookie_array = array('token' => $token, 'username' => $inputUsername, 'rating' => $rating, 'date_created' => $date_created, 'verification' => '1');
+                setcookie("uid", serialize($setcookie_array), time()+3600, "/");
+            };
+            header('Location: thank_you_page.php');
         } else {
-            $showUsernameHelp = 'false';
-            $showEmailHelp = 'false';
-            include_once "/error/error.php";
+            $_SESSION['verification_try_again'] = "true";
+            header('Location: verification.php');
         };
+    } catch(PDOException $exception) {
+        include_once "/error/error.php";
     };
 } else {
-    //include_once "good_check_verification_code.html";
-};*/
+    header('Location: verification.php');
+};
 ?>

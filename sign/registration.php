@@ -2,7 +2,6 @@
 session_start();
 
 require_once "../php/db_connect.php";
-//require_once "../php/get_users.php";
 
 $inputUsername = $_POST["inputUsername"];
 $inputPassword = md5($_POST["inputPassword"]);
