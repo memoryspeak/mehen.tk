@@ -23,7 +23,7 @@
       </div>
       <?php
           if ($_SESSION['verification_try_again'] == 'true') {
-              echo '<div class="callout" color="red">Key does not fit. Try again.</div>';
+              echo '<div class="container mt-3 callout text-danger">Key does not fit. Try again.</div>';
           };
           unset($_SESSION['verification_try_again']);
       ?>

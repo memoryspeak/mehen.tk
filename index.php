@@ -1,6 +1,12 @@
 <?php
 session_start();
-//setcookie('uid', '', time()-3600, '/');
-//$_SESSION['mehenname'] = $_COOKIE['uid'];
+
+if (!$_SESSION['username'] && !$_SESSION['rating']) {
+    $db_ini_array = parse_ini_file('db.ini');
+    require_once "php/db_connect.php";
+
+    require_once "php/set_session.php";
+};
+
 include_once "html/index.html";
 ?>

@@ -8,10 +8,22 @@ require 'PHPMailer/src/SMTP.php';
 
 session_start();
 
-if (unserialize($_COOKIE['uid'])['verification'] == 0) {
-    $email = unserialize($_COOKIE['uid'])['email'];
-    $username = unserialize($_COOKIE['uid'])['username'];
-    $verification_code = unserialize($_COOKIE['uid'])['verification_code'];
+if ($_SESSION['verification'] == 0) {
+    $db_ini_array = parse_ini_file('../db.ini');
+    require_once "../php/db_connect.php";
+
+    try {
+        $upload_user_array = array('token' => $_COOKIE['token']);
+        $upload_user = $db_connect->prepare("SELECT * FROM `users` WHERE `token` = :token");
+        $upload_user->execute($upload_user_array);
+        $verification_result = $upload_user->fetchAll();
+
+        $email = $verification_result[0]['email'];
+        $username = $verification_result[0]['username'];
+        $verification_code = $verification_result[0]['verification_code'];
+    } catch(PDOException $exception) {
+            include_once "/error/error.php";
+    };
 
     $mail_ini_array = parse_ini_file('../mail.ini');
 
@@ -41,6 +53,8 @@ if (unserialize($_COOKIE['uid'])['verification'] == 0) {
 
     try {
         $mail->send();
+        require_once "../php/set_session.php";
+
         include_once "verification.html";
     } catch (Exception $exception) {
         include_once "/error/error.php";

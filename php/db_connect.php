@@ -1,5 +1,5 @@
 <?php
-$db_ini_array = parse_ini_file('../db.ini');
+//$db_ini_array = parse_ini_file('../db.ini');
 
 $db_host = $db_ini_array["db_host"];
 $db_user = $db_ini_array["db_user"];

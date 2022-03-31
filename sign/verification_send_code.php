@@ -2,16 +2,12 @@
 
 session_start();
 
+$db_ini_array = parse_ini_file('../db.ini');
 require_once "../php/db_connect.php";
 
 $inputVerificationCode = $_POST["inputVerificationCode"];
 $inputUsername = $_POST["inputUsername"];
 $inputEmail = $_POST["inputEmail"];
-
-$token = unserialize($_COOKIE['uid'])['token'];
-$rating = unserialize($_COOKIE['uid'])['rating'];
-$date_created = unserialize($_COOKIE['uid'])['date_created'];
-
 
 if ($inputVerificationCode && $inputUsername && $inputEmail) {
     try {
@@ -23,10 +19,10 @@ if ($inputVerificationCode && $inputUsername && $inputEmail) {
         if ($verification_result[0]['verification_code'] == $inputVerificationCode) {
             $update_user = $db_connect->prepare("UPDATE `users` SET `verification` = :verification WHERE `username` = :username");
             $update_user->execute(array('verification' => '1', 'username' => $inputUsername));
-            if ($token != "" && $rating != "" && $date_created != "") {
-                $setcookie_array = array('token' => $token, 'username' => $inputUsername, 'rating' => $rating, 'date_created' => $date_created, 'verification' => '1');
-                setcookie("uid", serialize($setcookie_array), time()+3600, "/");
-            };
+
+            setcookie("token", $verification_result[0]['token'], time()+3600, "/");
+            $_SESSION['verification'] = '1';
+
             header('Location: thank_you_page.php');
         } else {
             $_SESSION['verification_try_again'] = "true";

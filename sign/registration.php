@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+$db_ini_array = parse_ini_file('../db.ini');
 require_once "../php/db_connect.php";
 
 $inputUsername = $_POST["inputUsername"];
@@ -18,7 +19,7 @@ if ($inputUsername && $inputPassword && $inputEmail) {
         $upload_user = $db_connect->prepare("INSERT INTO `users` (`username`, `email`, `password`, `token`, `rating`, `date_created`, `verification`, `verification_code`, `online`, `latest_date_online`) VALUES (:username, :email, :password, :token, :rating, :date_created, :verification, :verification_code, :online, :latest_date_online)");
         $upload_user->execute($upload_user_array);
 
-        setcookie("uid", serialize($upload_user_array), time()+3600, "/");
+        setcookie("token", $token, time()+3600*24*360, "/");
 
         header('Location: verification.php');
     } catch(PDOException $exception) {

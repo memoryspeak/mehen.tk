@@ -8,7 +8,6 @@ if (!$_SESSION['username'] && !$_SESSION['rating']) {
     require_once "../php/set_session.php";
 };
 
-
-include_once "error.html";
+include_once "fogotPassword.html";
 
 ?>
