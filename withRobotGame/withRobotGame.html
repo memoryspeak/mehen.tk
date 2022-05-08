@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  
+<?php require "../block/head.php" ?>
+
+<body>
+<?php require "../block/header.php" ?>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <!--Menu-->
+    <?php require "../block/menu.php" ?>
+    
+    <!-- Main Board -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+      <!--With Robot Game-->
+      <center>
+        <a class="nav-link me-0 px-3" href="#"><span style="color: black"><b>&#128250;??? With Robot Game</b></span></a>
+      </center>
+      <div class="container">
+        <div class="row">
+          <div class="col"><center>Player 111111111111111111</center></div>
+          <div class="col" id="svg-container"></div>
+          <div class="col"><center>Player 222222222222222222</center></div>
+        </div>
+      </div>
+
+        <!--Footer-->
+	<?php require "../block/footer.php" ?>
+
+    </main>
+  </div>
+</div>
+
+<script src="https://getbootstrap.com/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="withRobotGame.js"  type="module"></script>
+
+</body>
+
+</html>

@@ -1,5 +1,5 @@
 <?php
-session_start();
+/*session_start();
 
 if (!$_SESSION['username'] && !$_SESSION['rating']) {
     $db_ini_array = parse_ini_file('db.ini');
@@ -8,5 +8,7 @@ if (!$_SESSION['username'] && !$_SESSION['rating']) {
     require_once "php/set_session.php";
 };
 
-include_once "html/index.html";
+include_once "html/index.html";*/
+
+header('Location: /basic/web/index.php');
 ?>
