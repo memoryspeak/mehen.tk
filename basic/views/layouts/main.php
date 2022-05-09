@@ -44,9 +44,13 @@ AppAsset::register($this);
             //['label' => 'Home', 'url' => ['/site/index']],
             //['label' => 'About', 'url' => ['/site/about']],
             //['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Phone', 'url' => ['/site/phone']],
-            ['label' => 'Docx', 'url' => ['/site/docx']],
-            ['label' => 'Windows', 'url' => ['/site/windows']],
+            //['label' => 'Phone', 'url' => ['/site/phone']],
+            //['label' => 'Docx', 'url' => ['/site/docx']],
+            //['label' => 'Windows', 'url' => ['/site/windows']],
+            ['label' => 'Play', 'url' => ['/site/play'], 'items' => [
+		['label' => 'With Robot', 'url' => ['site/play', 'tag' => 'robot']],
+		['label' => 'Network', 'url' => ['site/play', 'tag' => 'network']],
+            ]],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
@@ -77,7 +81,7 @@ AppAsset::register($this);
 
 <footer class="footer mt-auto py-3 text-muted">
     <div class="container">
-        <p class="float-left">&copy; Cusima Project <?= date('Y') ?></p>
+        <p class="float-left">&copy; Mehen Project <?= date('Y') ?></p>
         <!--<p class="float-right"><?= Yii::powered() ?></p>-->
         <p class="float-right"><?= Yii::designed() ?></p>
     </div>

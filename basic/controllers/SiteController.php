@@ -156,6 +156,16 @@ class SiteController extends Controller
         return $this->render('docx');
     }
 
+     /**
+     * Displays play page.
+     *
+     * @return string
+     */
+    public function actionPlay($tag = null)
+    {
+        return $this->render('play', compact('tag'));
+    }
+
     /**
      * Displays documentation page.
      *
