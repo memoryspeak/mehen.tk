@@ -14,6 +14,6 @@ $this->registerJsFile('@web/js/play.js', ['depends' => 'yii\web\YiiAsset', 'type
     <h1 style="text-transform:uppercase"><?php echo $tag?> game</h1>
   </div>
 
-  <div class="col-sm" id="mehenboard"></div>
+  <div class="col-sm" id="mehen_board_container"></div>
 
 </div>
