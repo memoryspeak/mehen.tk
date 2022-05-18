@@ -13,7 +13,9 @@ function showMehenBoard(){
 		"#0dcaf0", //background-color
 		pieceList, //list of piece
 		whiteDiceRoll, //whiteDiceRoll
-		blackDiceRoll); //blackDiceRoll
+		blackDiceRoll, //blackDiceRoll
+		memoryWhite, //memoryWhite
+		memoryBlack); //memoryBlack
 	mehen_board_container.innerHTML = mehenBoard.getHtml();
 	
 	pieceList.forEach((item) => {
@@ -76,6 +78,9 @@ let pieceList = [];
 
 var whiteDiceRoll;
 var blackDiceRoll;
+
+var memoryWhite = 0;
+var memoryBlack = 0;
 
 //init Pieces
 let piece_white_0 = new Piece(

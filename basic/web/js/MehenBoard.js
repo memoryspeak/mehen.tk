@@ -1,5 +1,8 @@
-export default class Mehen {
-	constructor(width, height, viewBoxMinX, viewBoxMinY, viewBoxWidth, viewBoxHeight, color){
+import Piece from './Piece.js';
+import DiceRoll from './DiceRoll.js';
+
+export default class MehenBoard {
+	constructor(width, height, viewBoxMinX, viewBoxMinY, viewBoxWidth, viewBoxHeight, color, pieceList, whiteDiceRoll, blackDiceRoll, memoryWhite, memoryBlack){
 		this.width = width;
 		this.height = height;
 		this.viewBoxMinX = viewBoxMinX;
@@ -10,6 +13,13 @@ export default class Mehen {
 		this.squareWidth = this.width/8;
 		this.squareHeight = this.height/12;
 		this.lineWidth = this.squareWidth/15;
+		this.pieceList = pieceList;
+		this.strokeWidth = 0.2;
+		this.whiteDiceRoll = whiteDiceRoll;
+		this.blackDiceRoll = blackDiceRoll;
+		this.memoryWhite = memoryWhite;
+		this.memoryBlack = memoryBlack;
+		this.memorySize = 0.85;
 	}
 
 	getHtml() {
@@ -22,7 +32,43 @@ export default class Mehen {
 		'style="background-color: '+this.color+';">'+
 			this.#getRectString()+
 			this.#getLineString()+
+			this.#getPieceListString()+
+			this.#getWhiteDiceRollString()+
+			this.#getBlackDiceRollString()+
+			this.#getMemoryWhiteString()+
+			this.#getMemoryBlackString()+
 		'</svg>';
+	}
+	
+	#getMemoryWhiteString() {
+		return '<circle cx="'+this.squareWidth*13/2+'" cy="'+this.squareWidth*3/2+'" r="'+this.memorySize*this.squareWidth/2+'" stroke="black" fill="black" />';
+	};
+	
+	#getMemoryBlackString() {
+		return '<circle cx="'+this.squareWidth*13/2+'" cy="'+this.squareWidth*21/2+'" r="'+this.memorySize*this.squareWidth/2+'" stroke="black" fill="black" />';
+	};
+
+	#getWhiteDiceRollString() {
+		var whiteDiceRollString = "";
+		this.whiteDiceRoll.setWidth(this.squareWidth);
+		whiteDiceRollString += this.whiteDiceRoll.getHtml();
+		return whiteDiceRollString;
+	};
+	
+	#getBlackDiceRollString() {
+		var blackDiceRollString = "";
+		this.blackDiceRoll.setWidth(this.squareWidth);
+		blackDiceRollString += this.blackDiceRoll.getHtml();
+		return blackDiceRollString;
+	};
+
+	#getPieceListString() {	
+		var piecesString = '';
+		this.pieceList.forEach((piece) => {
+			piece.setRadius(this.squareWidth/2);
+			piecesString += piece.getHtml();
+		});
+		return piecesString;
 	}
 
 	#getRectString() {
@@ -94,7 +140,7 @@ export default class Mehen {
 						squareColor = "#FFDEAD";
 						break;
 				}
-				rectString += '<rect id="'+id+'" x="'+x+'" y="'+y+'" width="'+width+'" height="'+height+'" stroke="black" fill="'+squareColor+'" stroke-width="0.1"/>';
+				rectString += '<rect id="'+id+'" x="'+x+'" y="'+y+'" width="'+width+'" height="'+height+'" stroke="black" fill="'+squareColor+'" stroke-width="'+this.strokeWidth+'"/>';
 			}
 		}
 		return rectString;

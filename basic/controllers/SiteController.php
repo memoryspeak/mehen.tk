@@ -166,6 +166,26 @@ class SiteController extends Controller
         return $this->render('play', compact('tag'));
     }
 
+     /**
+     * Displays play page.
+     *
+     * @return string
+     */
+    public function actionNetwork()
+    {
+        return $this->render('network');
+    }
+
+    /**
+     * Displays play page.
+     *
+     * @return string
+     */
+    public function actionRobot()
+    {
+        return $this->render('robot');
+    }
+
     /**
      * Displays documentation page.
      *

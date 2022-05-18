@@ -48,8 +48,11 @@ AppAsset::register($this);
             //['label' => 'Docx', 'url' => ['/site/docx']],
             //['label' => 'Windows', 'url' => ['/site/windows']],
             ['label' => 'Play', 'url' => ['/site/play'], 'items' => [
-		['label' => 'With Robot', 'url' => ['site/play', 'tag' => 'robot']],
-		['label' => 'Network', 'url' => ['site/play', 'tag' => 'network']],
+		/*['label' => 'With Robot', 'url' => ['site/play', 'tag' => 'robot']],
+		['label' => 'Network', 'url' => ['site/play', 'tag' => 'network']],*/
+		
+		['label' => 'With Robot', 'url' => ['site/robot']],
+		['label' => 'Network', 'url' => ['site/network']],
             ]],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
